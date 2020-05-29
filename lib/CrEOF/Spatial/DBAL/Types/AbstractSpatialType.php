@@ -113,6 +113,10 @@ abstract class AbstractSpatialType extends Type
      */
     public function convertToPHPValue($value, AbstractPlatform $platform)
     {
+        if (null === $value) {
+            return $value;
+        }
+        
         if (
             is_object($value) &&
             ! $value instanceof AbstractSpatialType
