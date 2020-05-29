@@ -96,7 +96,7 @@ abstract class AbstractSpatialDQLFunction extends FunctionNode
         $parser->match(Lexer::T_IDENTIFIER);
         $parser->match(Lexer::T_OPEN_PARENTHESIS);
 
-        $this->addGeometryExpression($parser->ArithmeticPrimary());
+        $this->addGeometryExpression($parser->SimpleArithmeticExpression());
 
         while (count($this->geometryExpression) < $this->getMinParameter()
             || ((count($this->geometryExpression) < $this->getMaxParameter())
@@ -104,7 +104,7 @@ abstract class AbstractSpatialDQLFunction extends FunctionNode
         ) {
             $parser->match(Lexer::T_COMMA);
 
-            $this->addGeometryExpression($parser->ArithmeticPrimary());
+            $this->addGeometryExpression($parser->SimpleArithmeticExpression());
         }
 
         $parser->match(Lexer::T_CLOSE_PARENTHESIS);
